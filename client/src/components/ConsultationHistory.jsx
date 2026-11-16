@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { History, RefreshCw, Calendar, Tag, ShieldCheck, User, Lock, Trash2 } from 'lucide-react';
 
-export default function ConsultationHistory({ language, sessionId }) {
+export default function ConsultationHistory({ language, sessionId, onResetSession }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,11 +25,11 @@ export default function ConsultationHistory({ language, sessionId }) {
     fetchHistory();
   }, [sessionId]);
 
-  const clearLocalHistory = () => {
-    // Generate a fresh session ID
-    const newSid = 'seeker_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now().toString(36);
-    localStorage.setItem('remedy_setu_session_id', newSid);
-    window.location.reload();
+  const handleClear = async () => {
+    setHistory([]);
+    if (onResetSession) {
+      await onResetSession();
+    }
   };
 
   return (
@@ -63,7 +63,7 @@ export default function ConsultationHistory({ language, sessionId }) {
             <span>{language === 'hi' ? 'ताज़ा करें' : 'Refresh'}</span>
           </button>
           <button
-            onClick={clearLocalHistory}
+            onClick={handleClear}
             className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-rose-500/30 text-rose-300 hover:bg-rose-500/10 text-xs font-medium"
             title="Start fresh new private session"
           >

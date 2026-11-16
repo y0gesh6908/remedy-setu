@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles, ShieldCheck, CornerDownLeft, RefreshCw } from 'lucide-react';
+import { Send, Bot, User, Sparkles, RefreshCw } from 'lucide-react';
 
 const SUGGESTED_PROMPTS = {
   en: [
@@ -16,8 +16,8 @@ const SUGGESTED_PROMPTS = {
   ]
 };
 
-export default function AstrologyChat({ language }) {
-  const [messages, setMessages] = useState([
+export default function AstrologyChat({ language, sessionId }) {
+  const getInitialMessage = () => ([
     {
       sender: 'assistant',
       text: language === 'hi'
@@ -26,9 +26,28 @@ export default function AstrologyChat({ language }) {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
+
+  const [messages, setMessages] = useState(() => {
+    try {
+      const saved = localStorage.getItem('remedy_setu_chat_messages');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return getInitialMessage();
+  });
+
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
+
+  // When sessionId resets, clear the chat messages back to initial
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('remedy_setu_chat_messages');
+      if (!saved) {
+        setMessages(getInitialMessage());
+      }
+    } catch (e) {}
+  }, [sessionId]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -36,6 +55,9 @@ export default function AstrologyChat({ language }) {
 
   useEffect(() => {
     scrollToBottom();
+    try {
+      localStorage.setItem('remedy_setu_chat_messages', JSON.stringify(messages));
+    } catch (e) {}
   }, [messages]);
 
   const handleSend = async (textToSend) => {
@@ -59,7 +81,8 @@ export default function AstrologyChat({ language }) {
         body: JSON.stringify({
           message: query,
           chatHistory: messages.slice(-6),
-          language
+          language,
+          sessionId
         })
       });
 
@@ -93,15 +116,8 @@ export default function AstrologyChat({ language }) {
   };
 
   const clearChat = () => {
-    setMessages([
-      {
-        sender: 'assistant',
-        text: language === 'hi'
-          ? 'चैट रीसेट हो गई है। आप अपनी समस्या या कैटलॉग के किसी भी उत्पाद के बारे में पूछ सकते हैं।'
-          : 'Chat history cleared. You may ask about any Remedy Setu remedy or birth concern.',
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-    ]);
+    localStorage.removeItem('remedy_setu_chat_messages');
+    setMessages(getInitialMessage());
   };
 
   return (

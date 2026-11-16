@@ -6,9 +6,8 @@ import AstrologyChat from './components/AstrologyChat';
 import CatalogueModal from './components/CatalogueModal';
 import ConsultationHistory from './components/ConsultationHistory';
 import { localCatalogue } from './data/productsLocal';
-import { Sparkles, ShieldCheck, HeartHandshake, Award, CheckCircle2, ChevronRight, Lock } from 'lucide-react';
+import { Sparkles, ShieldCheck, HeartHandshake, Award, Lock } from 'lucide-react';
 
-// Get or generate an anonymous, secure private session ID for the user's browser
 function getOrCreateSessionId() {
   let sid = localStorage.getItem('remedy_setu_session_id');
   if (!sid) {
@@ -24,7 +23,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [prescriptionResult, setPrescriptionResult] = useState(null);
   const [backendStatus, setBackendStatus] = useState(null);
-  const [sessionId] = useState(() => getOrCreateSessionId());
+  const [sessionId, setSessionId] = useState(() => getOrCreateSessionId());
 
   // Check backend health
   useEffect(() => {
@@ -33,6 +32,21 @@ export default function App() {
       .then(data => setBackendStatus(data))
       .catch(() => setBackendStatus({ status: 'offline' }));
   }, []);
+
+  const handleResetSession = async () => {
+    try {
+      await fetch(`/api/remedies/history?sessionId=${encodeURIComponent(sessionId)}`, {
+        method: 'DELETE'
+      });
+    } catch (e) {
+      console.warn('Could not call delete history:', e);
+    }
+    const newSid = 'seeker_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now().toString(36);
+    localStorage.setItem('remedy_setu_session_id', newSid);
+    localStorage.removeItem('remedy_setu_chat_messages');
+    setSessionId(newSid);
+    setPrescriptionResult(null);
+  };
 
   // Handle consultation form submission
   const handleConsultationSubmit = async (formData) => {
@@ -97,7 +111,6 @@ export default function App() {
       });
     } finally {
       setLoading(false);
-      // Smooth scroll to results
       setTimeout(() => {
         window.scrollTo({ top: 400, behavior: 'smooth' });
       }, 150);
@@ -172,14 +185,12 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {activeTab === 'form' && (
           <div className="space-y-10">
-            {/* Form */}
             <ConsultationForm
               onSubmit={handleConsultationSubmit}
               loading={loading}
               language={language}
             />
 
-            {/* Prescription Result (if available) */}
             {prescriptionResult && (
               <div id="prescription-section">
                 <PrescriptionCard
@@ -195,7 +206,7 @@ export default function App() {
 
         {activeTab === 'chat' && (
           <div className="max-w-4xl mx-auto">
-            <AstrologyChat language={language} />
+            <AstrologyChat language={language} sessionId={sessionId} />
           </div>
         )}
 
@@ -205,7 +216,11 @@ export default function App() {
 
         {activeTab === 'history' && (
           <div className="max-w-4xl mx-auto">
-            <ConsultationHistory language={language} sessionId={sessionId} />
+            <ConsultationHistory 
+              language={language} 
+              sessionId={sessionId} 
+              onResetSession={handleResetSession} 
+            />
           </div>
         )}
       </main>

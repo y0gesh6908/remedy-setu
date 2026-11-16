@@ -8,7 +8,7 @@ import { isDbConnected } from '../config/db.js';
 const router = express.Router();
 
 // In-memory consultations storage fallback
-const inMemoryConsultations = [];
+let inMemoryConsultations = [];
 
 // POST /api/remedies/suggest
 router.post('/suggest', async (req, res) => {
@@ -79,7 +79,7 @@ router.post('/suggest', async (req, res) => {
       }
     } else {
       inMemoryConsultations.unshift(consultationDoc);
-      if (inMemoryConsultations.length > 50) inMemoryConsultations.pop();
+      if (inMemoryConsultations.length > 100) inMemoryConsultations.pop();
     }
 
     res.json({
@@ -139,37 +139,57 @@ router.post('/chat', async (req, res) => {
 });
 
 // GET /api/remedies/history
-// PRIVACY SAFEGUARD: Only returns records belonging to the requesting sessionId!
+// Strict privacy filter: only returns consultations matching the user's sessionId
 router.get('/history', async (req, res) => {
   try {
     const { sessionId, adminSecret } = req.query;
 
-    // If an admin requests all data with optional adminSecret, allow it;
-    // otherwise, strictly filter by the user's private sessionId!
-    const query = {};
-    if (adminSecret && adminSecret === process.env.ADMIN_SECRET) {
-      // allow admin view
-    } else if (sessionId) {
-      query.sessionId = sessionId;
-    } else {
-      // If no sessionId provided, return empty list for privacy
+    if (!sessionId && (!adminSecret || adminSecret !== process.env.ADMIN_SECRET)) {
       return res.json({ success: true, count: 0, data: [] });
     }
 
-    let consultations;
+    const query = {};
+    if (sessionId) {
+      query.sessionId = sessionId;
+    }
+
+    let consultations = [];
     if (isDbConnected()) {
       consultations = await Consultation.find(query).sort({ createdAt: -1 }).limit(20);
     } else {
       consultations = inMemoryConsultations
-        .filter(c => !query.sessionId || c.sessionId === query.sessionId)
+        .filter(c => c.sessionId === sessionId)
         .slice(0, 20);
     }
 
     res.json({
       success: true,
       count: consultations.length,
-      data: consultations,
-      privacyMode: "Isolated by private user session. Other visitors cannot view your records."
+      data: consultations
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// DELETE /api/remedies/history
+// Deletes consultation history for a given sessionId
+router.delete('/history', async (req, res) => {
+  try {
+    const { sessionId } = req.query;
+    if (!sessionId) {
+      return res.status(400).json({ success: false, error: 'sessionId is required to clear history.' });
+    }
+
+    if (isDbConnected()) {
+      await Consultation.deleteMany({ sessionId });
+    } else {
+      inMemoryConsultations = inMemoryConsultations.filter(c => c.sessionId !== sessionId);
+    }
+
+    res.json({
+      success: true,
+      message: 'Consultation history cleared for this session.'
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
