@@ -1,0 +1,26 @@
+{
+  "name": "remedy-setu-ai-assistant",
+  "version": "1.0.0",
+  "description": "Remedy Setu - AI Remedy Assistant (Option 2) built with React, Node.js, Express, MongoDB, and Gemini",
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:all": "npm run install:server && npm run install:client",
+    "server": "cd server && npm start",
+    "client": "cd client && npm run dev",
+    "seed": "cd server && npm run seed",
+    "build:client": "cd client && npm run build"
+  },
+  "keywords": [
+    "remedy-setu",
+    "faith-tech",
+    "astrology-remedy-assistant",
+    "gemini",
+    "react",
+    "node",
+    "express",
+    "mongodb"
+  ],
+  "author": "Remedy Setu Software Development Intern Candidate",
+  "license": "ISC"
+}
