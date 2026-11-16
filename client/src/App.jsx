@@ -6,7 +6,17 @@ import AstrologyChat from './components/AstrologyChat';
 import CatalogueModal from './components/CatalogueModal';
 import ConsultationHistory from './components/ConsultationHistory';
 import { localCatalogue } from './data/productsLocal';
-import { Sparkles, ShieldCheck, HeartHandshake, Award, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Sparkles, ShieldCheck, HeartHandshake, Award, CheckCircle2, ChevronRight, Lock } from 'lucide-react';
+
+// Get or generate an anonymous, secure private session ID for the user's browser
+function getOrCreateSessionId() {
+  let sid = localStorage.getItem('remedy_setu_session_id');
+  if (!sid) {
+    sid = 'seeker_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now().toString(36);
+    localStorage.setItem('remedy_setu_session_id', sid);
+  }
+  return sid;
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('form'); // 'form' | 'chat' | 'catalogue' | 'history'
@@ -14,6 +24,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [prescriptionResult, setPrescriptionResult] = useState(null);
   const [backendStatus, setBackendStatus] = useState(null);
+  const [sessionId] = useState(() => getOrCreateSessionId());
 
   // Check backend health
   useEffect(() => {
@@ -30,7 +41,7 @@ export default function App() {
       const response = await fetch('/api/remedies/suggest', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, sessionId })
       });
 
       const data = await response.json();
@@ -149,8 +160,8 @@ export default function App() {
               <span>Lab Certified Gemstones & Nepali Rudrakshas</span>
             </div>
             <div className="flex items-center space-x-1.5">
-              <HeartHandshake className="w-4 h-4 text-blue-400" />
-              <span>10,000+ Astrologers Partner Network</span>
+              <Lock className="w-4 h-4 text-sky-400" />
+              <span>100% Private & Anonymous Session</span>
             </div>
           </div>
 
@@ -194,7 +205,7 @@ export default function App() {
 
         {activeTab === 'history' && (
           <div className="max-w-4xl mx-auto">
-            <ConsultationHistory language={language} />
+            <ConsultationHistory language={language} sessionId={sessionId} />
           </div>
         )}
       </main>

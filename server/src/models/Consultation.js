@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const ConsultationSchema = new mongoose.Schema(
   {
+    sessionId: {
+      type: String,
+      index: true
+    },
     userName: {
       type: String,
       required: true

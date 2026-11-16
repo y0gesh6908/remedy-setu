@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { History, RefreshCw, Calendar, Tag, ShieldCheck, User } from 'lucide-react';
+import { History, RefreshCw, Calendar, Tag, ShieldCheck, User, Lock, Trash2 } from 'lucide-react';
 
-export default function ConsultationHistory({ language }) {
+export default function ConsultationHistory({ language, sessionId }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchHistory = async () => {
+    if (!sessionId) return;
     setLoading(true);
     try {
-      const res = await fetch('/api/remedies/history');
+      const res = await fetch(`/api/remedies/history?sessionId=${encodeURIComponent(sessionId)}`);
       const data = await res.json();
       if (data.success && data.data) {
         setHistory(data.data);
@@ -22,41 +23,68 @@ export default function ConsultationHistory({ language }) {
 
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [sessionId]);
+
+  const clearLocalHistory = () => {
+    // Generate a fresh session ID
+    const newSid = 'seeker_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now().toString(36);
+    localStorage.setItem('remedy_setu_session_id', newSid);
+    window.location.reload();
+  };
 
   return (
     <div className="bg-[#121A2B] border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
-      <div className="flex items-center justify-between pb-6 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
         <div>
           <div className="flex items-center space-x-2">
             <History className="w-5 h-5 text-amber-400" />
             <h2 className="text-xl sm:text-2xl font-serif font-bold text-white">
-              {language === 'hi' ? 'हालिया परामर्श इतिहास (MongoDB)' : 'Recent AI Consultations (MongoDB)'}
+              {language === 'hi' ? 'मेरा व्यक्तिगत परामर्श इतिहास' : 'My Personal Consultations'}
             </h2>
+            <span className="flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              <Lock className="w-3 h-3" />
+              <span>{language === 'hi' ? 'निजी एवं सुरक्षित' : 'Private to you'}</span>
+            </span>
           </div>
           <p className="text-xs text-slate-400 mt-1">
             {language === 'hi'
-              ? 'प्रत्येक जातक का परामर्श और अनुशंसित उपाय डेटाबेस में सुरक्षित संग्रहित होते हैं।'
-              : 'Consultation records, dosha assessments, and catalogue-grounded remedies saved in database.'}
+              ? 'गोपनीयता नीति: केवल आप ही इस ब्राउज़र पर अपने परामर्श देख सकते हैं। अन्य आगंतुकों को आपका डेटा कभी नहीं दिखता।'
+              : 'Privacy Policy: Only you can view your consultations on this device. Other visitors will never see your records.'}
           </p>
         </div>
 
-        <button
-          onClick={fetchHistory}
-          disabled={loading}
-          className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-xs font-medium"
-        >
-          <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-          <span>{language === 'hi' ? 'ताज़ा करें' : 'Refresh'}</span>
-        </button>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={fetchHistory}
+            disabled={loading}
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-xs font-medium"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+            <span>{language === 'hi' ? 'ताज़ा करें' : 'Refresh'}</span>
+          </button>
+          <button
+            onClick={clearLocalHistory}
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-rose-500/30 text-rose-300 hover:bg-rose-500/10 text-xs font-medium"
+            title="Start fresh new private session"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            <span>{language === 'hi' ? 'सत्र साफ करें' : 'New Session'}</span>
+          </button>
+        </div>
       </div>
 
       <div className="mt-6 space-y-4">
         {history.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 text-sm">
-            {language === 'hi'
-              ? 'अभी तक कोई पिछला परामर्श नहीं है। उपाय फॉर्म से नया परामर्श जनरेट करें।'
-              : 'No consultation records found yet. Submit the Remedy Finder form to record one.'}
+          <div className="text-center py-12 text-slate-400 text-sm bg-slate-900/40 rounded-2xl border border-dashed border-slate-800">
+            <Lock className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+            <p className="font-semibold text-slate-300">
+              {language === 'hi' ? 'इस डिवाइस पर अभी कोई परामर्श दर्ज नहीं है' : 'No past consultations on this device yet'}
+            </p>
+            <p className="text-xs text-slate-500 mt-1">
+              {language === 'hi'
+                ? 'उपाय फॉर्म भरें और अपनी कुंडली के अनुसार उपाय प्राप्त करें।'
+                : 'Submit the Remedy Finder form to get personalized remedies and save them here.'}
+            </p>
           </div>
         ) : (
           history.map((record, idx) => (

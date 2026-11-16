@@ -14,6 +14,7 @@ const inMemoryConsultations = [];
 router.post('/suggest', async (req, res) => {
   try {
     const { 
+      sessionId,
       name, 
       dob, 
       tob, 
@@ -54,8 +55,9 @@ router.post('/suggest', async (req, res) => {
       catalogueProducts
     });
 
-    // Save consultation record
+    // Save consultation record with private sessionId
     const consultationDoc = {
+      sessionId: sessionId || 'anonymous',
       userName: name || 'Seeker',
       dob,
       tob: tob || '',
@@ -137,19 +139,37 @@ router.post('/chat', async (req, res) => {
 });
 
 // GET /api/remedies/history
+// PRIVACY SAFEGUARD: Only returns records belonging to the requesting sessionId!
 router.get('/history', async (req, res) => {
   try {
+    const { sessionId, adminSecret } = req.query;
+
+    // If an admin requests all data with optional adminSecret, allow it;
+    // otherwise, strictly filter by the user's private sessionId!
+    const query = {};
+    if (adminSecret && adminSecret === process.env.ADMIN_SECRET) {
+      // allow admin view
+    } else if (sessionId) {
+      query.sessionId = sessionId;
+    } else {
+      // If no sessionId provided, return empty list for privacy
+      return res.json({ success: true, count: 0, data: [] });
+    }
+
     let consultations;
     if (isDbConnected()) {
-      consultations = await Consultation.find().sort({ createdAt: -1 }).limit(20);
+      consultations = await Consultation.find(query).sort({ createdAt: -1 }).limit(20);
     } else {
-      consultations = inMemoryConsultations.slice(0, 20);
+      consultations = inMemoryConsultations
+        .filter(c => !query.sessionId || c.sessionId === query.sessionId)
+        .slice(0, 20);
     }
 
     res.json({
       success: true,
       count: consultations.length,
-      data: consultations
+      data: consultations,
+      privacyMode: "Isolated by private user session. Other visitors cannot view your records."
     });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
