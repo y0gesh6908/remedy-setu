@@ -121,25 +121,25 @@ export default function AstrologyChat({ language, sessionId }) {
   };
 
   return (
-    <div className="bg-[#121A2B] border border-slate-800 rounded-3xl h-[680px] flex flex-col shadow-2xl overflow-hidden relative">
+    <div className="bg-white border border-stone-200/90 rounded-3xl h-[680px] flex flex-col shadow-sm overflow-hidden relative">
       
       {/* Chat Header */}
-      <div className="p-4 sm:p-5 border-b border-slate-800 bg-slate-900/80 flex items-center justify-between">
+      <div className="p-4 sm:p-5 border-b border-stone-200 bg-stone-50/80 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center text-slate-950 font-bold shadow-md shadow-amber-500/20">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-600 flex items-center justify-center text-white font-bold shadow-sm shadow-amber-500/20">
             <Bot className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="font-serif font-bold text-white text-base">
+              <h3 className="font-serif font-bold text-slate-900 text-base">
                 {language === 'hi' ? 'रेमेडी सेतु AI ज्योतिषी' : 'Remedy Setu AI Assistant'}
               </h3>
-              <span className="flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Online</span>
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               {language === 'hi' ? 'केवल कैटलॉग उत्पादों से उत्तर देता है' : 'Strictly bounded by 20-item Remedy Setu catalogue'}
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function AstrologyChat({ language, sessionId }) {
 
         <button
           onClick={clearChat}
-          className="text-slate-400 hover:text-slate-200 p-2 rounded-lg hover:bg-slate-800 transition-colors"
+          className="text-slate-400 hover:text-slate-700 p-2 rounded-xl hover:bg-stone-200/60 transition-colors"
           title="Reset conversation"
         >
           <RefreshCw className="w-4 h-4" />
@@ -155,7 +155,7 @@ export default function AstrologyChat({ language, sessionId }) {
       </div>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-[#FDFBF9]">
         {messages.map((msg, index) => {
           const isUser = msg.sender === 'user';
           return (
@@ -166,8 +166,8 @@ export default function AstrologyChat({ language, sessionId }) {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
                   isUser
-                    ? 'bg-amber-500 text-slate-950'
-                    : 'bg-slate-800 text-amber-400 border border-amber-500/30'
+                    ? 'bg-amber-500 text-white'
+                    : 'bg-white text-amber-700 border border-stone-200 shadow-sm'
                 }`}
               >
                 {isUser ? <User className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
@@ -176,14 +176,14 @@ export default function AstrologyChat({ language, sessionId }) {
               <div
                 className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   isUser
-                    ? 'bg-amber-500 text-slate-950 font-medium shadow-md shadow-amber-500/10'
-                    : 'bg-slate-900/90 text-slate-200 border border-slate-800'
+                    ? 'bg-amber-500 text-white font-medium shadow-sm'
+                    : 'bg-white text-slate-800 border border-stone-200/90 shadow-sm'
                 }`}
               >
                 <div className="whitespace-pre-wrap">{msg.text}</div>
                 <div
                   className={`text-[10px] mt-1.5 text-right ${
-                    isUser ? 'text-slate-800/80' : 'text-slate-500'
+                    isUser ? 'text-amber-100' : 'text-slate-400'
                   }`}
                 >
                   {msg.time}
@@ -195,13 +195,13 @@ export default function AstrologyChat({ language, sessionId }) {
 
         {loading && (
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-full bg-slate-800 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-white text-amber-600 border border-stone-200 shadow-sm flex items-center justify-center">
               <Sparkles className="w-4 h-4 animate-spin" />
             </div>
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl px-4 py-3 text-xs text-slate-400 flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-amber-400 animate-bounce" />
-              <div className="w-2 h-2 rounded-full bg-amber-400 animate-bounce [animation-delay:0.2s]" />
-              <div className="w-2 h-2 rounded-full bg-amber-400 animate-bounce [animation-delay:0.4s]" />
+            <div className="bg-white border border-stone-200 rounded-2xl px-4 py-3 text-xs text-slate-500 shadow-sm flex items-center space-x-2">
+              <div className="w-2 h-2 rounded-full bg-amber-500 animate-bounce" />
+              <div className="w-2 h-2 rounded-full bg-amber-500 animate-bounce [animation-delay:0.2s]" />
+              <div className="w-2 h-2 rounded-full bg-amber-500 animate-bounce [animation-delay:0.4s]" />
               <span>{language === 'hi' ? 'कैटलॉग जांच व उत्तर तैयार हो रहा है...' : 'Checking catalogue & formulating answer...'}</span>
             </div>
           </div>
@@ -211,15 +211,15 @@ export default function AstrologyChat({ language, sessionId }) {
       </div>
 
       {/* Suggested quick chips */}
-      <div className="px-4 py-2 bg-slate-900/60 border-t border-slate-800/60 flex items-center space-x-2 overflow-x-auto no-scrollbar">
-        <span className="text-[11px] text-slate-500 whitespace-nowrap">
+      <div className="px-4 py-2.5 bg-stone-50 border-t border-stone-200 flex items-center space-x-2 overflow-x-auto no-scrollbar">
+        <span className="text-[11px] text-slate-500 font-semibold whitespace-nowrap">
           {language === 'hi' ? 'सुझाव:' : 'Try:'}
         </span>
         {(language === 'hi' ? SUGGESTED_PROMPTS.hi : SUGGESTED_PROMPTS.en).map((prompt, idx) => (
           <button
             key={idx}
             onClick={() => handleSend(prompt)}
-            className="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-300 rounded-full px-3 py-1 whitespace-nowrap transition-colors border border-slate-700"
+            className="text-xs bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-900 rounded-full px-3 py-1 whitespace-nowrap transition-colors border border-stone-200/90 shadow-sm"
           >
             {prompt}
           </button>
@@ -227,7 +227,7 @@ export default function AstrologyChat({ language, sessionId }) {
       </div>
 
       {/* Input box */}
-      <div className="p-4 border-t border-slate-800 bg-slate-900/80">
+      <div className="p-4 border-t border-stone-200 bg-white">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -244,12 +244,12 @@ export default function AstrologyChat({ language, sessionId }) {
                 ? 'नीलम, रुद्राक्ष या पूजा के बारे में प्रश्न पूछें...'
                 : 'Ask about gemstones, rudraksha, or puja rituals from catalogue...'
             }
-            className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            className="flex-1 bg-stone-50 border border-stone-300 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="w-12 h-12 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 shadow-md shadow-amber-500/20"
+            className="w-12 h-12 rounded-xl bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 shadow-sm shadow-amber-500/20"
           >
             <Send className="w-5 h-5" />
           </button>

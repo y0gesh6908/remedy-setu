@@ -4,35 +4,42 @@
 
 @layer base {
   body {
-    background-color: #090D16;
-    color: #F8FAFC;
-    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #FBF9F5;
+    color: #1E293B;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 }
 
-.vedic-glow {
-  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.25);
+.vedic-subtle-glow {
+  box-shadow: 0 4px 20px -2px rgba(217, 119, 6, 0.08);
 }
 
-.vedic-glow-hover:hover {
-  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.4);
+.vedic-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* Custom scrollbars */
+.vedic-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom light scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #F1F5F9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #CBD5E1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: #F59E0B;
 }

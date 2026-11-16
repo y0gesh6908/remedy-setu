@@ -118,7 +118,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090D16] text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen flex flex-col bg-[#FBF9F5] text-slate-800 selection:bg-amber-100 selection:text-amber-900">
       
       {/* Top Navbar */}
       <Navbar
@@ -130,50 +130,50 @@ export default function App() {
       />
 
       {/* Hero Banner */}
-      <div className="relative border-b border-slate-800/80 bg-gradient-to-b from-[#101726] to-[#090D16] overflow-hidden py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+      <div className="relative border-b border-stone-200/80 bg-gradient-to-b from-amber-50/60 via-[#FBF9F5] to-[#FBF9F5] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold mb-4">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-amber-900 text-xs font-semibold mb-4 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
             <span>Option 2 — AI Remedy Assistant • Remedy Setu</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-slate-900">
             {language === 'hi' ? (
               <>
                 जन्म विवरण व समस्याओं के <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
                   100% प्रामाणिक वैदिक उपाय
                 </span>
               </>
             ) : (
               <>
                 Authentic Vedic Remedies Guided by <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
                   Gemini AI & Curated Catalogue
                 </span>
               </>
             )}
           </h1>
 
-          <p className="mt-4 text-sm sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-4 text-sm sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             {language === 'hi'
               ? 'करियर, विवाह, स्वास्थ्य या धन की चिंता दर्ज करें। हमारा एआई मॉडल 20 प्रामाणिक उत्पादों (रत्न, रुद्राक्ष, पूजा) के कैटलॉग से बिना किसी भ्रामक सलाह के सटीक उपाय सुझाता है।'
               : 'Enter birth details & life concerns (Career, Marriage, Health, Finance). Our AI model prescribes remedies strictly from our 20-item catalogue with complete price transparency.'}
           </p>
 
           {/* Value Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-xs text-slate-300">
-            <div className="flex items-center space-x-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 text-xs text-slate-700">
+            <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200/90 shadow-sm font-medium">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Zero Hallucinations (Strict Catalogue Only)</span>
             </div>
-            <div className="flex items-center space-x-1.5">
-              <Award className="w-4 h-4 text-amber-400" />
+            <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200/90 shadow-sm font-medium">
+              <Award className="w-4 h-4 text-amber-600" />
               <span>Lab Certified Gemstones & Nepali Rudrakshas</span>
             </div>
-            <div className="flex items-center space-x-1.5">
-              <Lock className="w-4 h-4 text-sky-400" />
+            <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200/90 shadow-sm font-medium">
+              <Lock className="w-4 h-4 text-sky-600" />
               <span>100% Private & Anonymous Session</span>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function App() {
                   result={prescriptionResult}
                   language={language}
                   onOpenChat={() => setActiveTab('chat')}
-                  onSelectProduct={(p) => setActiveTab('catalogue')}
+                  onSelectProduct={() => setActiveTab('catalogue')}
                 />
               </div>
             )}
@@ -226,16 +226,16 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 bg-[#070B12] py-8 text-xs text-slate-400">
+      <footer className="border-t border-stone-200 bg-white py-8 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
-            <span className="text-amber-500 font-bold text-base">🕉️ Remedy Setu</span>
+            <span className="text-amber-600 font-bold text-base">🕉️ Remedy Setu</span>
             <span>(Formerly Humara Pandit, D A Dharm Sathi Pvt. Ltd.)</span>
           </div>
 
           <div className="text-center sm:text-right">
             <span>DPIIT-Recognised Faith-Tech Startup • Full Stack Internship Project</span>
-            <div className="text-slate-500 mt-0.5">Stack: React + Node.js + Express + MongoDB + Google Gemini</div>
+            <div className="text-slate-400 mt-0.5">Stack: React + Node.js + Express + MongoDB + Google Gemini</div>
           </div>
         </div>
       </footer>

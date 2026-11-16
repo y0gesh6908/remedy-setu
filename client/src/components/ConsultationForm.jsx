@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, User, Sparkles, AlertCircle, ArrowRight, ShieldCheck, Heart, Briefcase, DollarSign, Activity } from 'lucide-react';
+import { Calendar, Clock, MapPin, User, Sparkles, ArrowRight, ShieldCheck, Heart, Briefcase, DollarSign, Activity } from 'lucide-react';
 
 const SAMPLE_CONCERNS = {
   en: [
@@ -27,10 +27,10 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
   });
 
   const concernsList = [
-    { id: 'career', label: language === 'hi' ? 'करियर व नौकरी' : 'Career & Business', icon: Briefcase, color: 'from-blue-500/20 to-indigo-500/20 border-blue-500/40' },
-    { id: 'marriage', label: language === 'hi' ? 'विवाह व संबंध' : 'Marriage & Love', icon: Heart, color: 'from-rose-500/20 to-pink-500/20 border-rose-500/40' },
-    { id: 'health', label: language === 'hi' ? 'स्वास्थ्य व दीर्घायु' : 'Health & Vitality', icon: Activity, color: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/40' },
-    { id: 'finance', label: language === 'hi' ? 'धन, कर्ज व समृद्धि' : 'Finance & Debt', icon: DollarSign, color: 'from-amber-500/20 to-yellow-500/20 border-amber-500/40' }
+    { id: 'career', label: language === 'hi' ? 'करियर व नौकरी' : 'Career & Business', icon: Briefcase },
+    { id: 'marriage', label: language === 'hi' ? 'विवाह व संबंध' : 'Marriage & Love', icon: Heart },
+    { id: 'health', label: language === 'hi' ? 'स्वास्थ्य व दीर्घायु' : 'Health & Vitality', icon: Activity },
+    { id: 'finance', label: language === 'hi' ? 'धन, कर्ज व समृद्धि' : 'Finance & Debt', icon: DollarSign }
   ];
 
   const handleSubmit = (e) => {
@@ -47,23 +47,20 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
   };
 
   return (
-    <div className="bg-[#121A2B] border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-      {/* Decorative background glow */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
-
+    <div className="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-10 shadow-sm relative">
+      
       {/* Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-800 text-xs font-semibold uppercase tracking-wider mb-3">
+          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
           <span>{language === 'hi' ? 'वैदिक कुंडली एवं उपाय विश्लेषण' : 'Vedic Remedy Prescription Engine'}</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 tracking-tight">
           {language === 'hi' ? 'अपनी जन्म कुंडली का विवरण दर्ज करें' : 'Enter Birth Details & Life Concern'}
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+        <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
           {language === 'hi'
-            ? 'हमारा एआई मॉडल आपकी जन्मतिथि और समस्या के अनुसार केवल रेमेडी सेतु के प्रमाणित कैटलॉग (रत्न, रुद्राक्ष, पूजा) से सटीक उपाय सुझाएगा।'
+            ? 'हमारा एआई मॉडल आपकी जन्मतिथि और समस्या के अनुसार केवल रेमेडी सेतु के 20 प्रमाणित उत्पादों (रत्न, रुद्राक्ष, पूजा) से सटीक उपाय सुझाएगा।'
             : 'Gemini AI evaluates planetary doshas and prescribes remedies exclusively from the official Remedy Setu 20-item catalogue.'}
         </p>
       </div>
@@ -75,69 +72,69 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
           
           {/* Name */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
               {language === 'hi' ? 'पूरा नाम' : 'Full Name'}
             </label>
             <div className="relative">
-              <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+              <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder={language === 'hi' ? 'उदा. राहुल शर्मा' : 'e.g. Rahul Sharma'}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-stone-50/70 border border-stone-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
               />
             </div>
           </div>
 
           {/* Date of Birth */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
               {language === 'hi' ? 'जन्म तिथि' : 'Date of Birth (DOB)'} *
             </label>
             <div className="relative">
-              <Calendar className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+              <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               <input
                 type="date"
                 required
                 value={formData.dob}
                 onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-stone-50/70 border border-stone-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
               />
             </div>
           </div>
 
           {/* Time of Birth */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
               {language === 'hi' ? 'जन्म समय' : 'Time of Birth (TOB)'}
             </label>
             <div className="relative">
-              <Clock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+              <Clock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               <input
                 type="time"
                 value={formData.tob}
                 onChange={(e) => setFormData({ ...formData, tob: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-stone-50/70 border border-stone-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
               />
             </div>
           </div>
 
           {/* Place of Birth */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
               {language === 'hi' ? 'जन्म स्थान (शहर/राज्य)' : 'Place of Birth (POB)'} *
             </label>
             <div className="relative">
-              <MapPin className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+              <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               <input
                 type="text"
                 required
                 value={formData.pob}
                 onChange={(e) => setFormData({ ...formData, pob: e.target.value })}
                 placeholder={language === 'hi' ? 'उदा. दिल्ली / जयपुर' : 'e.g. Varanasi, UP'}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-stone-50/70 border border-stone-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
               />
             </div>
           </div>
@@ -146,7 +143,7 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
 
         {/* Concern Category Selector */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-3">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-3">
             {language === 'hi' ? 'प्रमुख जीवन चिंता / विषय चुनें' : 'Select Primary Life Concern'} *
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -160,12 +157,12 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
                   onClick={() => setFormData({ ...formData, concernCategory: item.id })}
                   className={`flex flex-col items-center justify-center p-4 rounded-2xl border text-center transition-all ${
                     isSelected
-                      ? 'bg-gradient-to-b from-amber-500/20 to-amber-600/10 border-amber-500 text-amber-300 shadow-lg shadow-amber-500/10 ring-2 ring-amber-500/30'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                      ? 'bg-amber-50/90 border-amber-500 text-amber-900 shadow-sm ring-2 ring-amber-500/20 font-bold'
+                      : 'bg-stone-50/80 border-stone-200 text-slate-600 hover:border-stone-300 hover:bg-stone-100 hover:text-slate-900 font-medium'
                   }`}
                 >
-                  <Icon className={`w-6 h-6 mb-2 ${isSelected ? 'text-amber-400' : 'text-slate-400'}`} />
-                  <span className="text-sm font-semibold">{item.label}</span>
+                  <Icon className={`w-5 h-5 mb-2 ${isSelected ? 'text-amber-600' : 'text-slate-400'}`} />
+                  <span className="text-sm">{item.label}</span>
                 </button>
               );
             })}
@@ -175,10 +172,10 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
         {/* Detailed Question / Concern Description */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700">
               {language === 'hi' ? 'अपनी समस्या विस्तार से लिखें' : 'Describe your Situation / Query'} *
             </label>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-400">
               {language === 'hi' ? 'नीचे दिए उदाहरणों पर क्लिक कर सकते हैं' : 'Click sample prompts below for quick test'}
             </span>
           </div>
@@ -192,12 +189,12 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
                 ? 'उदा. पिछले 3 सालों से नौकरी में कोई तरक्की नहीं मिल रही है। क्या कोई विशिष्ट रत्न या रुद्राक्ष मुझे पहनना चाहिए?'
                 : 'e.g. Experiencing extreme financial delay and job transfer disputes. What remedies will help mitigate Shani/Rahu doshas?'
             }
-            className="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            className="w-full bg-stone-50/70 border border-stone-300 rounded-2xl p-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
           />
 
           {/* Quick Clickable Samples */}
           <div className="mt-3 flex flex-wrap gap-2">
-            <span className="text-xs text-slate-500 self-center">
+            <span className="text-xs text-slate-400 self-center font-medium">
               {language === 'hi' ? 'त्वरित उदाहरण:' : 'Quick Prompts:'}
             </span>
             {(language === 'hi' ? SAMPLE_CONCERNS.hi : SAMPLE_CONCERNS.en).map((sample, idx) => (
@@ -205,7 +202,7 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
                 key={idx}
                 type="button"
                 onClick={() => applySample(sample)}
-                className="text-xs bg-slate-800/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 border border-slate-700/60 rounded-full px-3 py-1 transition-colors text-left"
+                className="text-xs bg-stone-100 hover:bg-amber-50 text-slate-600 hover:text-amber-900 border border-stone-200/80 rounded-full px-3 py-1 transition-colors text-left"
               >
                 {sample.label}
               </button>
@@ -214,10 +211,10 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
         </div>
 
         {/* Catalogue Guardrail Transparency Callout */}
-        <div className="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/20 flex items-start space-x-3">
-          <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
-          <div className="text-xs text-slate-300 leading-relaxed">
-            <span className="font-semibold text-emerald-400">
+        <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 flex items-start space-x-3">
+          <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+          <div className="text-xs text-emerald-900 leading-relaxed">
+            <span className="font-bold text-emerald-950">
               {language === 'hi' ? '100% प्रामाणिक कैटलॉग गारंटी: ' : 'Anti-Hallucination Guardrail: '}
             </span>
             {language === 'hi'
@@ -231,11 +228,11 @@ export default function ConsultationForm({ onSubmit, loading, language }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 font-bold text-base shadow-xl shadow-amber-500/20 hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-sm sm:text-base shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 active:scale-[0.99] transition-all flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>
-                <div className="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 <span>{language === 'hi' ? 'कुंडली व कैटलॉग का विश्लेषण जारी...' : 'Analyzing Kundali & Grounding in Catalogue...'}</span>
               </>
             ) : (
