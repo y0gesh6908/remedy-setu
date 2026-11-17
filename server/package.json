@@ -8,8 +8,8 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "seed": "node src/seed.js",
-    "build:client": "cd ../client && npm install && npm run build",
-    "render-build": "npm install && cd ../client && npm install && npm run build"
+    "build:client": "cd ../client && npm install --include=dev && npm run build",
+    "render-build": "npm install && cd ../client && npm install --include=dev && npm run build"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
