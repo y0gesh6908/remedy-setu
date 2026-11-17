@@ -133,10 +133,7 @@ export default function App() {
       <div className="relative border-b border-stone-200/80 bg-gradient-to-b from-amber-50/60 via-[#FBF9F5] to-[#FBF9F5] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-amber-900 text-xs font-semibold mb-4 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
-            <span>Option 2 — AI Remedy Assistant • Remedy Setu</span>
-          </div>
+        
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-slate-900">
             {language === 'hi' ? (

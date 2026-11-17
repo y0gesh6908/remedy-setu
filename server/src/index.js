@@ -7,6 +7,7 @@ import { connectDB, isDbConnected } from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import remedyRoutes from './routes/remedyRoutes.js';
 import { initialProducts } from './data/products.js';
+import { Product } from './models/Product.js';
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// API Routes
 app.use('/api/products', productRoutes);
 app.use('/api/remedies', remedyRoutes);
 
@@ -37,7 +38,6 @@ app.get('/api/health', (req, res) => {
 });
 
 // Seed endpoint convenience
-import { Product } from './models/Product.js';
 app.get('/api/seed', async (req, res) => {
   try {
     if (isDbConnected()) {
@@ -51,23 +51,34 @@ app.get('/api/seed', async (req, res) => {
   }
 });
 
-// Root welcome
-app.get('/', (req, res) => {
-  res.send(`
-    <html>
-      <head><title>Remedy Setu API</title></head>
-      <body style="font-family: sans-serif; padding: 40px; background: #0f172a; color: #f8fafc;">
-        <h1 style="color: #f59e0b;">🕉️ Remedy Setu - AI Remedy Assistant API</h1>
-        <p>Faith-tech infrastructure for 10,000+ Astrologers & Spiritual Seekers.</p>
-        <ul>
-          <li><strong>API Health:</strong> <a style="color: #38bdf8;" href="/api/health">/api/health</a></li>
-          <li><strong>Product Catalogue:</strong> <a style="color: #38bdf8;" href="/api/products">/api/products</a></li>
-          <li><strong>Seed MongoDB:</strong> <a style="color: #38bdf8;" href="/api/seed">/api/seed</a></li>
-          <li><strong>Consultation History:</strong> <a style="color: #38bdf8;" href="/api/remedies/history">/api/remedies/history</a></li>
-        </ul>
-      </body>
-    </html>
-  `);
+// --- PRODUCTION: Serve React build ---
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
+app.use(express.static(clientDistPath));
+
+// All non-API routes → React's index.html (SPA client-side routing)
+app.get('*', (req, res) => {
+  const indexPath = path.join(clientDistPath, 'index.html');
+  // Check if the built file exists (production), otherwise show API welcome
+  import('fs').then(fs => {
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      res.send(`
+        <html>
+          <head><title>Remedy Setu API</title></head>
+          <body style="font-family: sans-serif; padding: 40px; background: #FBF9F5; color: #1e293b;">
+            <h1 style="color: #d97706;">🕉️ Remedy Setu - AI Remedy Assistant API</h1>
+            <p>Backend is running. Build the React client for the full UI.</p>
+            <ul>
+              <li><strong>API Health:</strong> <a href="/api/health">/api/health</a></li>
+              <li><strong>Product Catalogue:</strong> <a href="/api/products">/api/products</a></li>
+              <li><strong>Seed MongoDB:</strong> <a href="/api/seed">/api/seed</a></li>
+            </ul>
+          </body>
+        </html>
+      `);
+    }
+  });
 });
 
 // Connect to MongoDB and start server
@@ -75,9 +86,10 @@ async function startServer() {
   await connectDB();
   app.listen(PORT, () => {
     console.log(`=======================================================`);
-    console.log(`🚀 Remedy Setu Backend running on http://localhost:${PORT}`);
-    console.log(`🕉️ Serving 20 authentic Vedic products (Gemstones, Rudraksha, Pujas)`);
+    console.log(`🚀 Remedy Setu Backend running on port ${PORT}`);
+    console.log(`🕉️ Serving 20 authentic Vedic products`);
     console.log(`🔒 Guardrail: AI only recommends strictly from catalogue`);
+    console.log(`📂 Static files from: ${clientDistPath}`);
     console.log(`=======================================================`);
   });
 }
