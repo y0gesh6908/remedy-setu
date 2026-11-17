@@ -12,7 +12,7 @@ export const initialProducts = [
     description: "Natural Ceylon Blue Sapphire certified for Astrological efficacy. Best for individuals experiencing Saturn Sade Sati, career stagnation, or seeking rapid professional elevation.",
     descriptionHi: "प्राकृतिक सीलोन नीलम रत्न। शनि साढ़े साती, करियर में स्थिरता और त्वरित व्यावसायिक उन्नति व अनुशासन के लिए सर्वश्रेष्ठ।",
     benefits: ["Discipline & focus", "Rapid career breakthrough", "Shield against hidden enemies", "Shani Dosh mitigation"],
-    imageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Blue_sapphire.3.jpg",
     inStock: true
   },
   {
@@ -27,7 +27,7 @@ export const initialProducts = [
     description: "Untreated Sri Lankan Yellow Sapphire radiating Jupiter's expansive energy. Renowned for accelerating marriage prospects, higher wisdom, business growth, and spiritual blessings.",
     descriptionHi: "प्राकृतिक श्रीलंकाई पुखराज। गुरु ग्रह की शुभता, शीघ्र विवाह के योग, व्यवसाय में धन वृद्धि और आध्यात्मिक ज्ञान के लिए सर्वोत्तम।",
     benefits: ["Marital harmony & timely alliance", "Financial wisdom & prosperity", "Academic & competitive success"],
-    imageUrl: "https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow_sapphire%2C_emerald_cut%2C_0.89cts.jpg",
     inStock: true
   },
   {
@@ -42,7 +42,7 @@ export const initialProducts = [
     description: "Lustrous green Zambian Emerald for strengthening Mercury. Highly beneficial for traders, IT professionals, communicators, CA, and financial consultants.",
     descriptionHi: "बुध ग्रह की शांति हेतु जाम्बियन पन्ना। व्यापारिक बुद्धि, वाकपटुता, शेयर बाजार व आईटी क्षेत्र में सफलता के लिए।",
     benefits: ["Sharper intellect & analytical thinking", "High-conversion communication", "Prosperous commercial trade"],
-    imageUrl: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Cut_Emerald.jpg",
     inStock: true
   },
   {
@@ -57,7 +57,7 @@ export const initialProducts = [
     description: "Certified deep red Italian Coral. Crucial remedy for Manglik Dosha, low physical vitality, blood-related ailments, lethargy, and leadership confidence.",
     descriptionHi: "प्रमाणित इटैलियन लाल मूंगा। मांगलिक दोष निवारण, आत्मविश्वास में वृद्धि, रक्त संबंधी रोगों व आलस्य को दूर करने के लिए।",
     benefits: ["Manglik Dosha pacification", "High physical stamina & courage", "Property & land disputes resolution"],
-    imageUrl: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Coral_Gem.jpg",
     inStock: true
   },
   {
@@ -72,7 +72,7 @@ export const initialProducts = [
     description: "Natural Pigeon Blood shade unheated Ruby. Bestows royal authority, government job success, executive respect, and vitality to the heart and bones.",
     descriptionHi: "सूर्य देव की कृपा हेतु प्राकृतिक बर्मा माणिक्य। सरकारी नौकरी, प्रशासनिक पद, मान-सम्मान व शारीरिक ओज में वृद्धि।",
     benefits: ["Government exam & leadership prestige", "Strong fatherly & authoritative relations", "Cardiovascular vitality"],
-    imageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Ruby_gem.JPG",
     inStock: true
   },
   {
@@ -87,7 +87,7 @@ export const initialProducts = [
     description: "Pure honey-colored Hessonite garnet to dispel Rahu shadows, sudden speculative losses, phobias, addiction, and chaotic restlessness.",
     descriptionHi: "राहु के दुष्प्रभाव व कालसर्प दोष में राहत देने वाला शुद्ध गोमेद। अचानक होने वाली हानि, भ्रम व मानसिक उलझनों से मुक्ति।",
     benefits: ["Clears sudden professional roadblocks", "Protection against deceit & legal hassles", "Mental calmness"],
-    imageUrl: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Hessonit-G-EmpireTheWorldOfGems.jpg",
     inStock: true
   },
   {
@@ -102,7 +102,7 @@ export const initialProducts = [
     description: "Silky chatoyancy Cat's Eye gemstone to stabilize Ketu. Shield against unexplained physical ailments, hidden enemies, and psychic vulnerability.",
     descriptionHi: "केतु ग्रह का शक्तिशाली रत्न लहसुनिया। अज्ञात रोगों, भूत-बाधा व गुप्त शत्रुओं से रक्षा तथा गूढ़ विद्या में सफलता।",
     benefits: ["Shields against sudden accidents", "Healing unexplained persistent fatigue", "Deep spiritual awakening"],
-    imageUrl: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Chrysoberyl_faceted.JPG",
     inStock: true
   },
 
@@ -119,7 +119,7 @@ export const initialProducts = [
     description: "Original large Nepali 5-faced Rudraksha mala. Harmonizes blood pressure, clears mental clutter, brings inner calmness and daily spiritual fortification.",
     descriptionHi: "प्राकृतिक नेपाली 5 मुखी रुद्राक्ष माला। रक्तचाप नियंत्रण, मानसिक तनाव से मुक्ति, ध्यान साधना व समग्र स्वास्थ्य संवर्धन।",
     benefits: ["Regulates nervous tension & blood pressure", "Universal suitability for all zodiacs", "Enhances memory & focus"],
-    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rudraksha_beads.jpg",
     inStock: true
   },
   {
@@ -134,7 +134,7 @@ export const initialProducts = [
     description: "Blessed by Goddess Mahalaxmi and the 7 Saptarishis. Clears debt entrapment, opens doors to continuous prosperity, and mitigates Saturn's financial hurdles.",
     descriptionHi: "मां महालक्ष्मी द्वारा प्रतिष्ठित 7 मुखी रुद्राक्ष। ऋण मुक्ति, व्यापारिक घाटे से उबरने और स्थिर धन-धान्य की प्राप्ति हेतु।",
     benefits: ["Debt recovery & money inflow", "Business stabilization", "Pacifies Saturn & Venus afflictions"],
-    imageUrl: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rudraksha.jpg",
     inStock: true
   },
   {
@@ -149,7 +149,7 @@ export const initialProducts = [
     description: "The most sacred and powerful manifestation of Lord Shiva. Grants supreme detachment from anxiety, laser concentration, leadership clarity, and higher purpose.",
     descriptionHi: "भगवान शिव का साक्षात स्वरूप। एकाग्रता, असीमित इच्छाशक्ति, उच्च नेतृत्व क्षमता और मानसिक शांति का सर्वोच्च साधन।",
     benefits: ["Supreme mental clarity & high willpower", "Destroys past karmic burdens", "Boosts inner authority"],
-    imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Original_Rudraksh_03.JPG",
     inStock: true
   },
   {
@@ -164,7 +164,7 @@ export const initialProducts = [
     description: "Symbolizes unity of Shiva and Parvati. Indispensable for resolving marital friction, relationship misunderstandings, emotional hypersensitivity, and finding a soulmate.",
     descriptionHi: "शिव-पार्वती का अर्धनारीश्वर रूप। वैवाहिक कलह समाप्त करने, रिश्तों में परस्पर प्रेम व चंद्रमा जनित तनाव मिटाने के लिए।",
     benefits: ["Marital bonding & mutual empathy", "Attracts compatible matrimonial alliances", "Heals emotional trauma"],
-    imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rudraksha_mukhi.jpg",
     inStock: true
   },
   {
@@ -179,7 +179,7 @@ export const initialProducts = [
     description: "Governed by Lord Kartikeya. Imparts fierce courage, magnetic charisma, youthfulness, and helps conquer fear of public speaking and indecision.",
     descriptionHi: "कार्तिकेय स्वरूप 6 मुखी रुद्राक्ष। आकर्षण शक्ति, आत्मविश्वास, छात्रों के लिए विद्या लाभ व वैवाहिक सुख की प्राप्ति।",
     benefits: ["Charismatic communication & magnetism", "Overcomes shyness and fear", "Supports academic & competitive exams"],
-    imageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rudraksha.jpeg",
     inStock: true
   },
   {
@@ -194,7 +194,7 @@ export const initialProducts = [
     description: "Governed by Lord Vishnu and the 10 Mahavidyas. Shields the wearer from evil eye (nazar), court cases, black magic, and erratic planetary afflictions.",
     descriptionHi: "भगवान विष्णु का दिव्य कवच। नकारात्मक ऊर्जा, कोर्ट-कचहरी, गुप्त षड्यंत्रों से रक्षा और दसों दिशाओं से सुरक्षा प्रदान करता है।",
     benefits: ["Powerful shield against hostile energy", "Resolves complex legal & administrative blocks", "General planetary pacification"],
-    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/RudrakshaBeads.jpg",
     inStock: true
   },
   {
@@ -209,7 +209,7 @@ export const initialProducts = [
     description: "The pinnacle of Vedic wearable remedies. Strung with authentic certified 1 to 14 Mukhi Nepali beads along with Gauri Shankar and Ganesh Rudrakshas.",
     descriptionHi: "वैदिक शास्त्रों में वर्णित सर्वोच्च सिद्ध माला। 1 से 14 मुखी, गौरी शंकर व गणेश रुद्राक्ष से सुसज्जित। समस्त जीवन में विजय हेतु।",
     benefits: ["Complete multi-dimensional life transformation", "Dharma, Artha, Kama, Moksha fulfillment", "Master planetary shield"],
-    imageUrl: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
     inStock: true
   },
 
@@ -226,7 +226,7 @@ export const initialProducts = [
     description: "Conducted at holy Ujjain or Kashi by 5 Vedic priests with live Sankalp video streaming. The ultimate Vedic antidote for chronic illnesses, ICU recoveries, and accidental fears.",
     descriptionHi: "उज्जैन या काशी के तीर्थ पर 5 विद्वान ब्राह्मणों द्वारा 1.25 लाख जाप व हवन। असाध्य रोगों, दीर्घायु व अकाल मृत्यु के भय से मुक्ति हेतु।",
     benefits: ["Rejuvenates life force & vitality", "Protects against fatal planetary transits (Maraka dashas)", "Sankalp with family gotra & live link"],
-    imageUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/(A)_Hindu_puja%2C_yajna%2C_yagna%2C_Havanam_in_progress.jpg",
     inStock: true
   },
   {
@@ -241,7 +241,7 @@ export const initialProducts = [
     description: "Performed directly at Mangalnath Temple, Ujjain (the birthplace of Mars on Earth). Remedies severe Mangal Dosha, relationship breakups, and delayed matrimonial unions.",
     descriptionHi: "मंगल देव की जन्मभूमि मंगलनाथ (उज्जैन) में भात पूजा व विशेष हवन। विवाह में आ रही देरी व वैवाहिक जीवन में कलह की शांति हेतु।",
     benefits: ["Neutralizes high Manglik afflictions", "Clears unexplained marriage delays", "Live video & consecrated Prasad delivered"],
-    imageUrl: "https://images.unsplash.com/photo-1609137144822-482a65825cfd?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Ceremony_aarti%2C_Hindu_Puja_India_b.jpg",
     inStock: true
   },
   {
@@ -256,7 +256,7 @@ export const initialProducts = [
     description: "Specialized Vedic rituals performed at Trimbakeshwar Jyotirlinga. Dissolves Kaal Sarp Dosha that causes sudden downfalls, nightmares, career dead-ends, and financial instability.",
     descriptionHi: "त्र्यंबकेश्वर ज्योतिर्लिंग पर विधिवत कालसर्प योग शांति पूजा। जीवन में निरंतर आने वाले व्यवधान, आर्थिक तंगी व बुरे स्वप्नों से मुक्ति।",
     benefits: ["Restores career upward mobility", "Relieves psychological burden & night terrors", "Full audio-video recording provided"],
-    imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Trimbakeshwar.jpg",
     inStock: true
   },
   {
@@ -271,7 +271,7 @@ export const initialProducts = [
     description: "Performed for commercial establishments and individuals facing stagnant cash flow or mounting business liabilities. Includes energizing an Ashtadhatu Kuber Yantra.",
     descriptionHi: "व्यापार में धन वृद्धि, रुके हुए पैसे की वापसी और निरंतर आय के नए स्रोत खोलने हेतु कुबेर व महालक्ष्मी विशेष अनुष्ठान।",
     benefits: ["Invokes steady cash flow & commercial growth", "Energized Sri Yantra and Kuber Yantra sent to customer", "Removes Daridra Dosha"],
-    imageUrl: "https://images.unsplash.com/photo-1608613304899-ea8098577e38?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Yantra_copper.jpg",
     inStock: true
   },
   {
@@ -286,7 +286,7 @@ export const initialProducts = [
     description: "Sacred mustard oil abhishekam and Shani Shanti Stotram path performed at Shani Shingnapur. Eases mental agony, job losses, and severe fatigue during Saturn's 7.5-year cycle.",
     descriptionHi: "शनि शिंगणापुर में विधिवत तैलाभिषेक व शनि शांति अनुष्ठान। साढ़े साती और ढैय्या की पीड़ा, आर्थिक हानि और मानसिक अवसाद में राहत।",
     benefits: ["Mitigates painful Saturn transits", "Shields against professional demotions & sudden crises", "Remedy Setu certified priest team"],
-    imageUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shani_Shignapur_renowned_for_its_Shani_temple.jpg",
     inStock: true
   },
   {
@@ -301,7 +301,7 @@ export const initialProducts = [
     description: "Holistic 9-planet Vedic havan balancing Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu using sacred samidhas (herbal woods) and planetary mantras.",
     descriptionHi: "समस्त 9 ग्रहों के अनुकूलन हेतु विशेष वैदिक महाहवन। घर में सुख-शांति, गृहक्लेश का निवारण और बहुमुखी प्रगति के लिए।",
     benefits: ["Balances conflicting astrological planetary combinations", "Brings peace, health, and family prosperity", "Personalized Sankalp for individual or business"],
-    imageUrl: "https://images.unsplash.com/photo-1609137144822-482a65825cfd?auto=format&fit=crop&w=600&q=80",
+    imageUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Shivalinga_Puja.JPG",
     inStock: true
   }
 ];

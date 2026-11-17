@@ -116,6 +116,7 @@ export default function PrescriptionCard({ result, language, onOpenChat, onSelec
                   <img
                     src={item.imageUrl}
                     alt={item.name}
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80'; }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-2 left-2">

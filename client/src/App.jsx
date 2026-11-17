@@ -230,10 +230,6 @@ export default function App() {
             <span>(Formerly Humara Pandit, D A Dharm Sathi Pvt. Ltd.)</span>
           </div>
 
-          <div className="text-center sm:text-right">
-            <span>DPIIT-Recognised Faith-Tech Startup • Full Stack Internship Project</span>
-            <div className="text-slate-400 mt-0.5">Stack: React + Node.js + Express + MongoDB + Google Gemini</div>
-          </div>
         </div>
       </footer>
 
